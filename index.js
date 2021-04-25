@@ -10,6 +10,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 app.get("/",UserController.findAll)
+app.get("/search", UserController.searchName)
 app.post("/user",UserController.create)
 app.delete("/user",UserController.remove)
 

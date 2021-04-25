@@ -8,8 +8,8 @@ class UserController {
             name: faker.name.findName(),
             email: faker.internet.email(),
             birthdate: faker.date.past(31),
-            height: 1.81,
-            weight: 79
+            height: faker.datatype.float({min: 1, max: 2.4}),
+            weight: faker.datatype.number({min: 40, max: 300})
         }
         await User.create(user)
         res.send("Usuário criado")
@@ -26,9 +26,15 @@ class UserController {
         try {
             await User.delete(userId)
             res.send("Usuário deletado")
-        } catch (error) {
+        } catch (error){
             console.log(error)
         }
+    }
+
+    async searchName(req,res){
+        let search = req.query.name
+        let result = await User.searchName(search)
+        res.json(result)
     }
 }
 

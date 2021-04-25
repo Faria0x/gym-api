@@ -33,6 +33,11 @@ class User {
             console.log(error)
         }
     }
+
+    async searchName(name){
+        let result = await knex("user").where("name","like",`%${name}%`)
+        return result
+    }
 }
 
 module.exports = new User()
