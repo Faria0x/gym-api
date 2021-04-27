@@ -38,6 +38,15 @@ class User {
         let result = await knex("user").where("name","like",`%${name}%`)
         return result
     }
+
+    async calculateImc(userId){
+        let result = await knex.select("*").where({id: userId}).table("user")
+        if(result.length > 0){
+            return result[0]
+        }else{
+            return false
+        }
+    }
 }
 
 module.exports = new User()
