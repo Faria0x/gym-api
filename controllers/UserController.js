@@ -17,7 +17,17 @@ class UserController {
 
     async findAll(req,res){
         let users = await User.findAll()
-        res.json(users)
+        let danger = []
+        // await users.forEach((user)=> {
+        //     if(user.weight / (user.height * user.height) >=18.5 && user.weight / (user.height * user.height) <= 24.9 ){
+        //         console.log(`${user.name} está normal`)
+        //     }else{
+                
+        //         console.log(`${user.name} não está normal`)
+        //     }
+           
+        // })
+        res.status(200)
     }
     
 
