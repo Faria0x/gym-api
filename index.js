@@ -14,6 +14,7 @@ app.get("/search", UserController.searchName)
 app.post("/user",UserController.create)
 app.delete("/user",UserController.remove)
 app.get("/imc",UserController.imc)
+app.get("/highimc",UserController.highImc)
 
 
 

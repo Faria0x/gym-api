@@ -18,15 +18,8 @@ class UserController {
     async findAll(req,res){
         let users = await User.findAll()
         let danger = []
-        // await users.forEach((user)=> {
-        //     if(user.weight / (user.height * user.height) >=18.5 && user.weight / (user.height * user.height) <= 24.9 ){
-        //         console.log(`${user.name} está normal`)
-        //     }else{
-                
-        //         console.log(`${user.name} não está normal`)
-        //     }
-           
-        // })
+        
+        res.send(users)
         res.status(200)
     }
     
@@ -54,6 +47,24 @@ class UserController {
         let height = user.height
         let imc = weight / (height * height)
         res.send(`O IMC de ${user.name} é ${imc}`)
+    }
+
+    async highImc(req,res){
+        let users = await User.findAll()
+        let danger = []
+        await users.forEach((user)=> {
+            if(user.weight / (user.height * user.height) >=18.5 && user.weight / (user.height * user.height) <= 24.9 ){
+               return;
+                // console.log(`${user.name} está normal`)
+            }else{
+                danger.push(user)
+                // console.log(`${user.name} não está normal`)
+            }
+           
+        })
+        res.send(danger)
+        res.status(200)
+        
     }
 }
 
