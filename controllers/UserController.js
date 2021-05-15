@@ -15,12 +15,23 @@ class UserController {
         res.send("Usuário criado")
     }
 
+    async findById(req,res){
+        let userId = req.params.id
+        let user = await User.findById(userId)
+        if(user){
+            res.render("examples/user",{user})
+        }else{
+           
+            res.send("Não encontrado")
+        }
+        
+    }
+
     async findAll(req,res){
         let users = await User.findAll()
         let danger = []
         
-        res.send(users)
-        res.status(200)
+        res.render("examples/tables",{users})
     }
     
 

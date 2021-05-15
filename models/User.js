@@ -9,6 +9,18 @@ class User {
         }
         
     }
+    async findById(userId){
+        try {
+            let user = await knex.select("*").where({id: userId}).table("user")
+            if(user.length > 0){
+                return user[0]
+            }else{
+                return false
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
     async findAll(){

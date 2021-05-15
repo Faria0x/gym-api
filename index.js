@@ -11,9 +11,9 @@ app.use(express.json())
 
 app.get("/",UserController.findAll)
 app.get("/search", UserController.searchName)
-app.post("/user",UserController.create)
+app.get("/user/:id",UserController.findById)
 app.delete("/user",UserController.remove)
-app.get("/imc",UserController.imc)
+app.get("/imc/:id",UserController.imc)
 app.get("/highimc",UserController.highImc)
 
 
